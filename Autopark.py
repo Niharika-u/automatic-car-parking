@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--x_start', type=int, default=50, help='X of start')
     parser.add_argument('--y_start', type=int, default=0, help='Y of start')
-    parser.add_argument('--parking_spot', type=list, default=[6, 12], help='empty car position in parking out of 12')
+    parser.add_argument('--parking_spot', type=list, default=[5], help='empty car position in parking out of 12')
 
     args = parser.parse_args()
 
@@ -32,17 +32,11 @@ if __name__ == '__main__':
     cv2.imshow('environment', res)
     key = cv2.waitKey(1000)
 
-    my_car.move_car(env)
+    my_car.move_car(env, parking)
 
-    print("Stop car, Acceleration = 0")
-    print("Parking space empty")
-    # Add feasibility logic
-    print("Checking Feasiblity")
-    # check logic here
-    print("Parking can be done")
-    print("Initiate parking")
-    my_car.park(env)
 
-    key = cv2.waitKey(100000)
+    key = cv2.waitKey(10000)
 
     cv2.destroyAllWindows()
+
+    

@@ -39,4 +39,7 @@ class ParkingLot:
                 obstacle = self.create_car() + self.cars[i]
                 self.obs = np.append(self.obs, obstacle)
         return np.array(self.obs).reshape(-1, 2)
+    
+    def get_cars(self):
+        return self.cars
 
