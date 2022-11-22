@@ -7,8 +7,8 @@ cars = {1: [[45, 20]], 2: [[65, 20]],
         5: [[35, 44]], 6: [[65, 44]],
         7: [[35, 56]], 8: [[65, 56]],
         9: [[35, 68]], 10: [[65, 68]],
-        11: [[35, 80]], 12: [[65, 80]]}
-
+        11: [[35, 80]], 12: [[65, 80]],
+        13: [[35, 92]], 14: [[65, 92]]}
 
 class Car:
     # Constructor to initialize the time, length, x xis, y axis and angle
@@ -135,7 +135,6 @@ class Car:
 
         parking_environment = parking.get_cars()
         determine_empty_spot(parking_environment)
-        print(parking_environment)
         to_park_x,to_park_y = get_parking_coordinates()
         to_park_y = to_park_y -12
         for i in range(30):
