@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--x_start', type=int, default=50, help='X of start')
     parser.add_argument('--y_start', type=int, default=0, help='Y of start')
-    parser.add_argument('--parking_spot', type=list, default=[5], help='empty car position in parking out of 12')
+    parser.add_argument('--parking_spot', type=list, default=[7], help='empty car position in parking out of 12')
 
     args = parser.parse_args()
 
