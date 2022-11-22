@@ -6,3 +6,7 @@ unit tests -
 mutant tests - 
 black box - 
 Different car sizes - 
+
+
+python -m unittest discover
+

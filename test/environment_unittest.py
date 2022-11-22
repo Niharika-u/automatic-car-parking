@@ -1,4 +1,5 @@
 from unittest import TestCase
+import unittest
 
 
 class EnvironmentTest(TestCase):
@@ -9,3 +10,6 @@ class EnvironmentTest(TestCase):
     # TODO complete test
     def test_incorrect_rotate_car(self):
         self.assertTrue(False)
+
+if __name__ == '__main__':
+    unittest.main()
