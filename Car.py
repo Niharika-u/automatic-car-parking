@@ -29,33 +29,49 @@ class Car:
     def park(self, env):
         global empty_spots
 
-        # to_park_x,to_park_y = get_parking_coordinates()
-
-        # self.update_car_state(to_park_x,to_park_y,psi=np.deg2rad(90))
-
-        if empty_spots[0] % 2:
+        if (empty_spots[0]%2):
             self.park_left(env)
         else:
             self.park_right(env)
 
-    def park_left(self, env):
-
-        self.update_car_state(y=5, psi=np.deg2rad(90))
+    def park_left(self,env):
+        
+        self.update_car_state(y=2, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
-        cv2.imshow('environment', res)
-        cv2.waitKey(100)
-
-        self.update_car_state(x=-5, y=-5)
-        res = env.render(self.x, self.y, np.deg2rad(45))
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
 
-        self.update_car_state(x=-5, y=-5)
+        self.update_car_state(y=3, psi=np.deg2rad(90))
+        res = env.render(self.x, self.y, self.psi)
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=-2, y=-2)
         res = env.render(self.x, self.y, np.deg2rad(45))
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
 
         self.update_car_state(x=-3, y=-3)
+        res = env.render(self.x, self.y, np.deg2rad(45))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=-2, y=-2)
+        res = env.render(self.x, self.y, np.deg2rad(45))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=-3, y=-3)
+        res = env.render(self.x, self.y, np.deg2rad(45))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=-1, y=-1)
+        res = env.render(self.x, self.y, np.deg2rad(45))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=-2, y=-2)
         res = env.render(self.x, self.y, np.deg2rad(45))
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
@@ -67,18 +83,18 @@ class Car:
 
         print("Parking complete")
 
-    def park_right(self, env):
-        self.update_car_state(y=5, psi=np.deg2rad(90))
+    def park_right(self,env):
+        self.update_car_state(y=2, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
         cv2.imshow('environment', res)
-        cv2.waitKey(100)
-
-        self.update_car_state(x=5, y=-5)
-        res = env.render(self.x, self.y, np.deg2rad(135))
+        cv2.waitKey(1000)
+        
+        self.update_car_state(y=3, psi=np.deg2rad(90))
+        res = env.render(self.x, self.y, self.psi)
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
 
-        self.update_car_state(x=5, y=-5)
+        self.update_car_state(x=2, y=-2)
         res = env.render(self.x, self.y, np.deg2rad(135))
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
@@ -88,11 +104,30 @@ class Car:
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
 
+        self.update_car_state(x=2, y=-2)
+        res = env.render(self.x, self.y, np.deg2rad(135))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=3, y=-3)
+        res = env.render(self.x, self.y, np.deg2rad(135))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
+        self.update_car_state(x=1, y=-1)
+        res = env.render(self.x, self.y, np.deg2rad(135))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+        
+        self.update_car_state(x=2, y=-2)
+        res = env.render(self.x, self.y, np.deg2rad(135))
+        cv2.imshow('environment', res)
+        cv2.waitKey(1000)
+
         self.update_car_state(x=2, y=3)
         res = env.render(self.x, self.y, np.deg2rad(90))
         cv2.imshow('environment', res)
         cv2.waitKey(1000)
-
         print("Parking complete")
 
     # Function to move car
@@ -101,13 +136,13 @@ class Car:
         parking_environment = parking.get_cars()
         determine_empty_spot(parking_environment)
         print(parking_environment)
-        to_park_x, to_park_y = get_parking_coordinates()
-        to_park_y = to_park_y - 12
-        for i in range(5):
-            self.update_car_state(y=to_park_y / 5 + 3.5, psi=np.deg2rad(90))
+        to_park_x,to_park_y = get_parking_coordinates()
+        to_park_y = to_park_y -12
+        for i in range(30):
+            
+            self.update_car_state(y=to_park_y/30+0.2, psi=np.deg2rad(90))
             res = env.render(self.x, self.y, self.psi)
             cv2.imshow('environment', res)
-            # self.x = i
             cv2.waitKey(100)
         self.park(env)
 
@@ -121,12 +156,10 @@ def get_parking_coordinates():
         else:
             coord = cars.get(empty_spots[0] + 1)
 
-        x, y = coord[0]
-        print(x, y)
-        return x - 12, y - 12
+        x,y=coord[0]
+        return x,y
     else:
         pass
-
 
 def determine_empty_spot(parking_environment):
     global empty_spots
@@ -134,6 +167,5 @@ def determine_empty_spot(parking_environment):
     for i in range(1, len(parking_environment)):
         if i not in parking_environment:
             empty_spots.append(i)
-    print(empty_spots)
 
     return empty_spots
