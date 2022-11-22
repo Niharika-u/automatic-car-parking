@@ -1,46 +1,5 @@
-# from unittest import TestCase
-# import unittest
-# import numpy as np
-
-import sys
-sys.path.insert(0, '/Users/smitvaghela/Desktop/CS/automatic-car-parking')
-# import argparse
-# from Car import determine_empty_spot
-# from Environment import Environment
-# from ParkingLot import ParkingLot
-# from Car import Car
-
-
-# class EnvironmentTest(unittest.TestCase):
-#     # TODO complete test
-#     def test_correct_rotate_car(self):
-#         expected_matrix = np.array([[-19, 40],[20,40], [19, -40], [-20, -40]])
-#         input_matrix = np.array([[40,20], [40, -20], [-40, -20], [-40, 20]])
-#         output_matrix = Environment.rotate_car(input_matrix, 90)
-#         self.assertEqual(expected_matrix.tolist(), output_matrix.tolist())
-
-#     # TODO complete test
-#     # def test_incorrect_rotate_car(self):
-#     #     self.assertTrue(False)
-
-#     # def test_correct_determine_empty_spot(self):
-#     #     parser = argparse.ArgumentParser()
-#     #     parser.add_argument('--x_start', type=int, default=50, help='X of start')
-#     #     parser.add_argument('--y_start', type=int, default=0, help='Y of start')
-#     #     parser.add_argument('--parking_spot', type=list, default=[5], help='empty car position in parking out of 12')
-#     #     args = parser.parse_args()
-
-#     #     pl = ParkingLot(args.parking_spot)
-
-#     #     parkingenv = pl.get_cars()
-#     #     expected_emptyspots = np.array([5])
-#     #     output_expeted = determine_empty_spot(parkingenv)
-#     #     self.assertEqual(expected_emptyspots, output_expeted)
-
-
-# if __name__ == '__main__':
-#     unittest.main()
-
+# import sys
+# sys.path.insert(0, '/Users/smitvaghela/Desktop/CS/automatic-car-parking')
 import unittest
 import numpy as np
 
