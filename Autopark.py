@@ -33,10 +33,6 @@ if __name__ == '__main__':
     key = cv2.waitKey(1000)
 
     my_car.move_car(env, parking)
-
-
     key = cv2.waitKey(10000)
-
     cv2.destroyAllWindows()
 
-    
