@@ -8,7 +8,7 @@ import cv2
 
 def get_empty_spots_from_sensor():
 
-    empty_spots = [1,6,14]
+    empty_spots = [7,14]
     return empty_spots
 
 if __name__ == '__main__':
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     # Display my car in the parking lot
     res = env.render(my_car.x, my_car.y, my_car.psi)
     cv2.imshow('environment', res)
-    key = cv2.waitKey(1000)
+    key = cv2.waitKey(20000)
     my_car.move_car(env, parking)
     key = cv2.waitKey(1000)
     cv2.destroyAllWindows()

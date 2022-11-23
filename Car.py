@@ -39,7 +39,7 @@ class Car:
         self.update_car_state(y=2, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
         cv2.imshow('environment', res)
-        cv2.waitKey(1000)
+        cv2.waitKey(5000)
 
         self.update_car_state(y=3, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
@@ -87,7 +87,7 @@ class Car:
         self.update_car_state(y=2, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
         cv2.imshow('environment', res)
-        cv2.waitKey(1000)
+        cv2.waitKey(5000)
         
         self.update_car_state(y=3, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
@@ -142,7 +142,8 @@ class Car:
             self.update_car_state(y=to_park_y/30+0.2, psi=np.deg2rad(90))
             res = env.render(self.x, self.y, self.psi)
             cv2.imshow('environment', res)
-            cv2.waitKey(100)
+            cv2.waitKey(150)
+        cv2.waitKey(1000)
         self.park(env)
 
 
