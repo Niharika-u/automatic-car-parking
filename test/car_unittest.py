@@ -32,11 +32,11 @@ class car_unittest(unittest.TestCase):
         self.assertEqual(expected, output)
 
     def test_correct_right_get_parking_coordinates(self):
-        pl = ParkingLot([6])
+        pl = ParkingLot([8])
         parkingenv = pl.get_cars()
         determine_empty_spot(parkingenv)
 
-        expected = (35, 56)
+        expected = (35, 68)
         output = get_parking_coordinates()
         self.assertEqual(expected, output)
 
