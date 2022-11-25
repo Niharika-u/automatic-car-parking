@@ -8,7 +8,7 @@ from Car import get_parking_coordinates
 from ParkingLot import ParkingLot
 
 
-class car_unittest((unittest.TestCase)):
+class car_unittest(unittest.TestCase):
     def test_correct_determine_empty_spot(self):
         pl = ParkingLot([5])
         parkingenv = pl.get_cars()
@@ -39,6 +39,17 @@ class car_unittest((unittest.TestCase)):
         expected = (35, 56)
         output = get_parking_coordinates()
         self.assertEqual(expected, output)
+
+    def test_incorrect_get_parking_coordinates(self):
+        pl = ParkingLot([6])
+        parkingenv = pl.get_cars()
+        determine_empty_spot(parkingenv)
+        pl = ParkingLot([6])
+        pl.get_cars()
+
+        expected = (50, 70)
+        output = get_parking_coordinates()
+        self.assertNotEqual(expected, output)
 
 
 if __name__ == '__main__':
