@@ -1,15 +1,8 @@
-#import sys
-#sys.path.insert(0, '/Users/shubh/automatic-car-parking')
+# import sys
+# sys.path.insert(0, '/Users/shubh/automatic-car-parking')
 import unittest
 import numpy as np
-
 from Environment import Environment
-
-from Car import determine_empty_spot
-from Car import get_parking_coordinates
-from Environment import Environment
-
-
 
 
 class EnvironmentTest(unittest.TestCase):
@@ -24,7 +17,6 @@ class EnvironmentTest(unittest.TestCase):
         input_matrix = np.array([[40, 60], [40, 50], [-40, 40], [-40, 30]])
         output_matrix = Environment.rotate_car(self, input_matrix, 90)
         self.assertNotEqual(expected_matrix.tolist(), output_matrix.tolist())
-    
 
 
 if __name__ == '__main__':
