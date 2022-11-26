@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # Display my car in the parking lot
     res = env.render(my_car.x, my_car.y, my_car.psi)
     cv2.imshow('environment', res)
-    key = cv2.waitKey(20000)
+    key = cv2.waitKey(10000)
     my_car.move_car(env, parking)
     key = cv2.waitKey(1000)
     cv2.destroyAllWindows()

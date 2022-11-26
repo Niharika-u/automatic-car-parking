@@ -29,9 +29,11 @@ class ParkingLot:
     def create_car(self):
         # meshgrid function is used to create a rectangular grid out of two given one-dimensional
         # arrays representing the Cartesian indexing or Matrix indexing.
-        car_coordinate_x, car_coordinate_y = np.meshgrid(np.arange(-2, 2), np.arange(-4, 4))
+        car_coordinate_x, car_coordinate_y = np.meshgrid(
+            np.arange(-2, 2), np.arange(-4, 4))
         # The dstack() is used to stack arrays in sequence depth wise (along third axis)
-        parked_cars = np.dstack([car_coordinate_x, car_coordinate_y]).reshape(-1, 2)
+        parked_cars = np.dstack(
+            [car_coordinate_x, car_coordinate_y]).reshape(-1, 2)
         return parked_cars
 
     def generate_obstacles(self):
@@ -40,7 +42,6 @@ class ParkingLot:
                 obstacle = self.create_car() + self.cars[i]
                 self.obs = np.append(self.obs, obstacle)
         return np.array(self.obs).reshape(-1, 2)
-    
+
     def get_cars(self):
         return self.cars
-
