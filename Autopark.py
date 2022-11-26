@@ -6,19 +6,20 @@ from Environment import Environment
 from Car import Car
 import cv2
 
-def get_empty_spots_from_sensor():
 
-    empty_spots = [7,14]
+def get_empty_spots_from_sensor():
+    empty_spots = [1, 6, 14]
     return empty_spots
 
+
 if __name__ == '__main__':
-    
     empty_parking_spots = get_empty_spots_from_sensor()
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--x_start', type=int, default=50, help='X of start')
     parser.add_argument('--y_start', type=int, default=0, help='Y of start')
-    parser.add_argument('--parking_spot', type=list, default=empty_parking_spots, help='empty car position in parking out of 12')
+    parser.add_argument('--parking_spot', type=list, default=empty_parking_spots,
+                        help='empty car position in parking out of 12')
 
     args = parser.parse_args()
 
@@ -42,4 +43,3 @@ if __name__ == '__main__':
     my_car.move_car(env, parking)
     key = cv2.waitKey(1000)
     cv2.destroyAllWindows()
-
