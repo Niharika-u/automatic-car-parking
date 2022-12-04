@@ -13,7 +13,7 @@ class ParkingLot:
                      [[30, i] for i in range(10, 105)]
 
         self.obs = np.array(self.walls)
-        self.cars = {1: [[35, 18]], 2: [[65, 20]], # actaul posistion of the cars in parking lot
+        self.cars = {1: [[35, 31]], 2: [[65, 20]], # actaul posistion of the cars in parking lot
                      3: [[35, 32]], 4: [[65, 32]],
                      5: [[35, 44]], 6: [[65, 44]],
                      7: [[35, 56]], 8: [[65, 56]],

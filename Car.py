@@ -199,6 +199,7 @@ class Car:
             if i not in parking_environment:
                 if(self.checkFisibility(i, parking_environment)):
                     empty_spots.append(i)
+                    
                 
 
         return empty_spots
