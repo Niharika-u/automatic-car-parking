@@ -8,7 +8,7 @@ import cv2
 
 
 def get_empty_spots_from_sensor():
-    empty_spots = [1, 6, 14]
+    empty_spots = [3, 6]
     return empty_spots
 
 
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # Create Environment coordinates
     env = Environment(obs)
     # Create my car with base values initialized
-    my_car = Car(start[0], start[1], np.deg2rad(90), length=4)
+    my_car = Car(start[0], start[1], np.deg2rad(90), length=6) #actual length of the car.
     # Display my car in the parking lot
     res = env.render(my_car.x, my_car.y, my_car.psi)
     cv2.imshow('environment', res)
