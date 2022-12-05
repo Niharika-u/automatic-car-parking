@@ -1,14 +1,17 @@
 import cv2
 import numpy as np
-
+import carlots
+import configparser
+import json
 global empty_spots
-cars = {1: [[45, 20]], 2: [[65, 20]],
-        3: [[35, 32]], 4: [[65, 32]],
-        5: [[35, 44]], 6: [[65, 44]],
-        7: [[35, 56]], 8: [[65, 56]],
-        9: [[35, 68]], 10: [[65, 68]],
-        11: [[35, 80]], 12: [[65, 80]],
-        13: [[35, 92]], 14: [[65, 92]]}
+
+cars = {1: [[35, 20]], 2: [[65, 20]],
+                    3: [[35, 32]], 4: [[65, 32]],
+                    5: [[35, 44]], 6: [[65, 44]],
+                    7: [[35, 56]], 8: [[65, 56]],
+                    9: [[35, 68]], 10: [[65, 68]],
+                    11: [[35, 80]], 12: [[65, 80]]}
+
 
 class Car:
     # Constructor to initialize the time, length, x xis, y axis and angle
@@ -144,6 +147,7 @@ class Car:
             cv2.imshow('environment', res)
             cv2.waitKey(100)
         self.park(env)
+
 
 
 def get_parking_coordinates():

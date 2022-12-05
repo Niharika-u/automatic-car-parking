@@ -1,8 +1,11 @@
 
 import numpy as np
+import configparser
 
 
 class ParkingLot:
+    
+    
     # Constructor
     def __init__(self, empty_parking_spot):
         # Initializing the parked cars
@@ -13,6 +16,7 @@ class ParkingLot:
                      [[30, i] for i in range(10, 105)]
 
         self.obs = np.array(self.walls)
+        # self.car=eval(cars)
         self.cars = {1: [[35, 20]], 2: [[65, 20]],
                      3: [[35, 32]], 4: [[65, 32]],
                      5: [[35, 44]], 6: [[65, 44]],
@@ -25,6 +29,9 @@ class ParkingLot:
         # defined in arguments
         for pos in empty_parking_spot:
             self.cars.pop(pos)
+            
+            
+            
 
     def create_car(self):
         # meshgrid function is used to create a rectangular grid out of two given one-dimensional

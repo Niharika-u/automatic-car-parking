@@ -3,6 +3,7 @@ import cv2
 
 
 class Environment:
+    
     def __init__(self, obstacles):
         self.margin = 5
         # coordinates are in [x,y] format
