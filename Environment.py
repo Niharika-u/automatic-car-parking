@@ -1,13 +1,14 @@
 import numpy as np
 import cv2
 
+import config
+
 
 class Environment:
-    
     def __init__(self, obstacles):
         self.margin = 5
         # coordinates are in [x,y] format
-        self.car_length = 80 # sizes of car to be parked 
+        self.car_length = config.car_length
         self.car_width = 40
         self.color = (255, 0, 0)
 

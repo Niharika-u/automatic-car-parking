@@ -1,21 +1,14 @@
 import cv2
 import numpy as np
-import carlots
-import configparser
-import json
-global empty_spots
-config_obj=configparser.ConfigParser()
-config_obj.read("configfile.ini")
-cars_obj=config_obj["carlots"]
+
+import config
+
+all_empty_spots = []
+empty_spots = []
 
 
-
-cars = cars_obj["carparkedposition"]
-car_arr=eval(cars)
-
-
-class Car: 
-    # Constructor to initialize the time, length, x xis, y axis and angle smit
+class Car:
+    # Constructor to initialize the time, length, x xis, y axis and angle
     def __init__(self, x_0, y_0, psi_0, length):
         self.L = length
         self.x = x_0
@@ -31,20 +24,17 @@ class Car:
     # This function will calculate all the angles and acceleration needed to park the car
     # once the parking spot is found and is feasible
     def park(self, env):
-        global empty_spots
-
-        if (empty_spots[0] % 2):
+        if empty_spots[0] % 2:
             self.park_left(env)
         else:
             self.park_right(env)
 
     def park_left(self, env):
-
         print("Initiating Parking Sequence.")
         self.update_car_state(y=2, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
         cv2.imshow('environment', res)
-        cv2.waitKey(1000)
+        cv2.waitKey(5000)
 
         self.update_car_state(y=3, psi=np.deg2rad(90))
         res = env.render(self.x, self.y, self.psi)
@@ -141,14 +131,18 @@ class Car:
     def move_car(self, env, parking):
 
         parking_environment = parking.get_cars()
-        self.determine_empty_spot(parking_environment)
-        to_park_x, to_park_y = self.get_parking_coordinates()
-
+        determine_empty_spot(parking_environment)
+        to_park_x, to_park_y = get_parking_coordinates()
         to_park_y = to_park_y - 12
+
         for i in range(30):
+            if i == 13 and (5 in config.big_cars):
+                cv2.waitKey(1500)
+                print("Feasibility Check.")
+                print("Not enough Space")
             if i % 6 == 0:
                 print("Locating empty parking spot.")
-            self.update_car_state(y=to_park_y/30+0.2, psi=np.deg2rad(90))
+            self.update_car_state(y=to_park_y / 30 + 0.2, psi=np.deg2rad(90))
             res = env.render(self.x, self.y, self.psi)
             cv2.imshow('environment', res)
             cv2.waitKey(150)
@@ -157,53 +151,28 @@ class Car:
         else:
             print("Located parking spot.")
 
-        cv2.waitKey(100)
+        cv2.waitKey(1000)
         if not to_park_y == 92:
             self.park(env)
-    
-    
-    def checkFisibility(self, i, parkingEnv):
-        ans = True
-        if(self.L == 6):
-            if((parkingEnv[i+2][0][1] - parkingEnv[i-2][0][1]) < 26):
-                print("Parking number "+str(i)+" : Can't park here")
-                ans = False
 
-        if(self.L == 4):
-            if((parkingEnv[i+2][0][1] - parkingEnv[i-2][0][1]) < 24):
-                print("Parking number "+str(i)+" : Can't park here")
-                ans = False
 
-        if(self.L == 3):
-            if((parkingEnv[i+2][0][1] - parkingEnv[i-2][0][1]) < 22):
-                print("Parking number "+str(i)+" : Can't park here")
-                ans = False
-        
-        return ans
-
-    def get_parking_coordinates(self):
-        global empty_spots
-
-        if empty_spots and empty_spots[0] != len(car_arr):
-            if empty_spots[0] % 2:
-                coord = car_arr.get(empty_spots[0] + 2)
-            else:
-                coord = car_arr.get(empty_spots[0] + 1)
-
-            x, y = coord[0]
-            return x, y
+def get_parking_coordinates():
+    if empty_spots and empty_spots[0] != len(config.cars):
+        if empty_spots[0] % 2:
+            coord = config.cars.get(empty_spots[0] + 2)
         else:
-            return 35, 104
+            coord = config.cars.get(empty_spots[0] + 1)
+        x, y = coord[0]
+        return x, y
+    else:
+        return 35, 104
 
-    def determine_empty_spot(self, parking_environment):
-        global empty_spots
-        empty_spots = []
-        for i in range(1, len(parking_environment)):
-            if i not in parking_environment:
-                if(self.checkFisibility(i, parking_environment)):
-                    empty_spots.append(i)
-                    
-                
 
-        return empty_spots
+def determine_empty_spot(parking_environment):
+    for i in range(1, len(parking_environment)):
+        if i not in parking_environment:
+            all_empty_spots.append(i)
+        if i not in parking_environment and (i + 2 not in config.big_cars or i - 2 not in config.big_cars):
+            empty_spots.append(i)
 
+    return empty_spots

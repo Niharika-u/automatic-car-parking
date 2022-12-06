@@ -1,25 +1,15 @@
 import argparse
 import np as np
 
+import config
 from ParkingLot import ParkingLot
 from Environment import Environment
 from Car import Car
 import cv2
-import configparser
-
-
-config_obj=configparser.ConfigParser()
-config_obj.read("configfile.ini")
-spots_obj=config_obj["empty_spots"]
-global spots
-spots = spots_obj["empty_spots_position"]
-
 
 
 def get_empty_spots_from_sensor():
-    
-    empty_spots = list(map(int, spots.split(',')))
-    
+    empty_spots = config.empty_spots
     return empty_spots
 
 
@@ -46,11 +36,11 @@ if __name__ == '__main__':
     # Create Environment coordinates
     env = Environment(obs)
     # Create my car with base values initialized
-    my_car = Car(start[0], start[1], np.deg2rad(90), length=4) #actual length of the car. length 3,4,6
+    my_car = Car(start[0], start[1], np.deg2rad(90), length=3) # actual length of the car.
     # Display my car in the parking lot
     res = env.render(my_car.x, my_car.y, my_car.psi)
     cv2.imshow('environment', res)
     key = cv2.waitKey(1000)
     my_car.move_car(env, parking)
-    key = cv2.waitKey(1000)
+    key = cv2.waitKey(1000000)
     cv2.destroyAllWindows()
