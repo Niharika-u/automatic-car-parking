@@ -1,12 +1,20 @@
 
 import numpy as np
 import configparser
+config_obj=configparser.ConfigParser()
+config_obj.read("configfile.ini")
+cars_obj=config_obj["carlots"]
+
+
+global cars
+cars = cars_obj["carparkedposition"]
+
 
 
 class ParkingLot:
     
     
-    # Constructor
+    # Constructor smit
     def __init__(self, empty_parking_spot):
         # Initializing the parked cars
         self.parked_cars = self.create_car()
@@ -16,19 +24,19 @@ class ParkingLot:
                      [[30, i] for i in range(10, 105)]
 
         self.obs = np.array(self.walls)
-        # self.car=eval(cars)
-        self.cars = {1: [[35, 20]], 2: [[65, 20]],
-                     3: [[35, 32]], 4: [[65, 32]],
-                     5: [[35, 44]], 6: [[65, 44]],
-                     7: [[35, 56]], 8: [[65, 56]],
-                     9: [[35, 68]], 10: [[65, 68]],
-                     11: [[35, 80]], 12: [[65, 80]],
-                     13: [[35, 92]], 14: [[65, 92]]}
+        self.car_arr=eval(cars)
+        # self.cars = {1: [[35, 20]], 2: [[65, 20]], # actaul posistion of the cars in parking lot
+        #              3: [[35, 32]], 4: [[65, 32]],
+        #              5: [[35, 44]], 6: [[65, 44]],
+        #              7: [[35, 56]], 8: [[65, 56]],
+        #              9: [[35, 68]], 10: [[65, 68]],
+        #              11: [[35, 80]], 12: [[65, 80]],
+        #              13: [[35, 92]], 14: [[65, 92]]}
 
         # This is the empty space for the car in the parking lot
         # defined in arguments
         for pos in empty_parking_spot:
-            self.cars.pop(pos)
+            self.car_arr.pop(pos)
             
             
             
@@ -36,18 +44,19 @@ class ParkingLot:
     def create_car(self):
         # meshgrid function is used to create a rectangular grid out of two given one-dimensional
         # arrays representing the Cartesian indexing or Matrix indexing.
-        car_coordinate_x, car_coordinate_y = np.meshgrid(np.arange(-2, 2), np.arange(-4, 4))
+        car_coordinate_x, car_coordinate_y = np.meshgrid(
+            np.arange(-2, 2), np.arange(-4, 4))
         # The dstack() is used to stack arrays in sequence depth wise (along third axis)
-        parked_cars = np.dstack([car_coordinate_x, car_coordinate_y]).reshape(-1, 2)
+        parked_cars = np.dstack(
+            [car_coordinate_x, car_coordinate_y]).reshape(-1, 2)
         return parked_cars
 
     def generate_obstacles(self):
-        for i in self.cars.keys():
-            for j in range(len(self.cars[i])):
-                obstacle = self.create_car() + self.cars[i]
+        for i in self.car_arr.keys():
+            for j in range(len(self.car_arr[i])):
+                obstacle = self.create_car() + self.car_arr[i]
                 self.obs = np.append(self.obs, obstacle)
         return np.array(self.obs).reshape(-1, 2)
-    
-    def get_cars(self):
-        return self.cars
 
+    def get_cars(self):
+        return self.car_arr
